@@ -1,2 +1,1 @@
-# manim-content
-Sources for my content produced with Manim
+This repository contains the source code for the videos I produce with Manim.
