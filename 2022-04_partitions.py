@@ -629,3 +629,21 @@ class ResultVisual(Scene):
             self.play(FadeOut(unique_YT, odd_YT, bijection, n_label, shift=UP))
             self.wait()
 
+
+
+class Thumbnail(Scene):
+    def construct(self):
+        pts = sorted(partitions(13), reverse=True, key=lambda pt: pt[::-1])
+        yts = [
+            YoungTableau(*partition[::-1], square_length=1)\
+                .set_submobject_colors_by_gradient(RED, YELLOW)\
+                .set_style(stroke_color=BH_DARKGREEN, fill_opacity=1)
+            for partition in pts]
+        current = yts[0]
+
+        yts_bg = VGroup(*[yt.copy().set_style(stroke_width=2, fill_color=WHITE, fill_opacity=0.1) for yt in yts])
+        yts_bg.arrange_in_grid(8, 13, buff=2).scale_to_fit_width(config.frame_width - 0.5)
+        self.add(yts_bg)
+
+        title = MathTex("13 = 13.").scale_to_fit_width(config.frame_width-2)
+        self.add(title)
